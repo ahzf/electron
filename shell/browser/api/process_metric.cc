@@ -52,9 +52,11 @@ namespace electron {
 
 ProcessMetric::ProcessMetric(int type,
                              base::ProcessHandle handle,
-                             std::unique_ptr<base::ProcessMetrics> metrics) {
+                             std::unique_ptr<base::ProcessMetrics> metrics,
+                             const std::string& service_name) {
   this->type = type;
   this->metrics = std::move(metrics);
+  this->service_name = service_name;
 
 #if defined(OS_WIN)
   HANDLE duplicate_handle = INVALID_HANDLE_VALUE;
